@@ -1,5 +1,5 @@
 import requests 
-from requests.auth import HTTPBasicAuth 
+from bs4 import BeautifulSoup
 
 session = requests.Session()
   
@@ -10,6 +10,15 @@ loginnya = {
 }
 url2 = 'https://siswa.smkn2solo.online/pages/classroom/_hari_ini.php'
 
-x = session.post(url, data=loginnya)
-x2 = session.get(url2)
-print(x2.text)
+session.post(url, data=loginnya)
+
+response = session.get(url2)
+
+soup = BeautifulSoup(response.text, 'html.parser')
+
+enroll_links = soup.find_all('a', href=True)
+for link in enroll_links:
+    if 'enroll.php' in link['href']:
+        enroll_url = 'https://siswa.smkn2solo.online/pages/classroom/' + link['href']
+        enroll_response = session.get(enroll_url)
+        print(enroll_response.text)
