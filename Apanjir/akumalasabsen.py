@@ -26,7 +26,7 @@ def loginwak():
         if 'enroll.php' in link['href']:
             enroll_url = 'https://siswa.smkn2solo.online/pages/classroom/' + link['href']
             enroll_response = session.get(enroll_url)
-            print(enroll_response.text)
+            print("Sudah absen")
 
 local_tz = pytz.timezone('Asia/Jakarta')
 
