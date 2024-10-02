@@ -6,7 +6,7 @@ import schedule
 import time
 
 login_data = [
-    {'username': '0063500607@smkn2-solo.net', 'password': 'ALIFM989', 'chat_id': '1558047516', 'name': 'Yodha'},
+    {'username': '0079968209@smkn2-solo.net', 'password': 'WW9kaGFBZ2FzdGh5YQ', 'chat_id': '1558047516', 'name': 'Yodha'},
     {'username': '0063500607@smkn2-solo.net', 'password': 'ALIFM989', 'chat_id': '955560398', 'name': 'Alif'},
     # {'username': 'another_user@smkn2-solo.net', 'password': 'ANOTHER_PASSWORD', 'chat_id': '1558047516', 'name': 'Yodha'}
 ]
@@ -18,11 +18,18 @@ def loginwak(username, password, chat_id, name):
         'password': password
     }
     url2 = 'https://siswa.smkn2solo.online/pages/classroom/_hari_ini.php'
+    
+    for usr in savedCreds():
+        data = {
+            'username': usr[0],
+            'password': usr[1]
+        }
+        session.post(url, data)
 
     session = requests.Session()
     session.post(url, data=loginnya)
 
-    response = session.get(url2)
+        soup = BeautifulSoup(response.text, 'html.parser')
 
     soup = BeautifulSoup(response.text, 'html.parser')
 
