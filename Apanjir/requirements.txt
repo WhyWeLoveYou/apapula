@@ -1,6 +1,0 @@
-Flask==2.2.5
-requests==2.31.0
-beautifulsoup4==4.12.3
-pytz==2024.2
-schedule==1.2.2
-markdownify==0.13.1
