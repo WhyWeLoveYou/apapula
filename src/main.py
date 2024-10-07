@@ -51,17 +51,15 @@ def absen(username, password, chat_id):
 
         if link:
             link = link[0]['href']
-            if link in SENDED:
-                continue
             
-            date = td[2].get_text(strip=True)
-            enroll_link = 'https://siswa.smkn2solo.online/pages/classroom/' + link
-            
-            response_text = SESSION.get(enroll_link).text
-            
-            message = create_message(response_text, date, link)
-            send_telegram_message(message, chat_id, link, date)
-            
+            if link not in SENDED:
+                date = td[2].get_text(strip=True)
+                enroll_link = 'https://siswa.smkn2solo.online/pages/classroom/' + link
+                
+                response_text = SESSION.get(enroll_link).text
+                
+                message = create_message(response_text, date, link)
+                send_telegram_message(message, chat_id, link, date)            
 
 def send_telegram_message(message, chat_id, link, date):
     url = f'https://api.telegram.org/bot{BOT_TOKEN}/sendMessage'
