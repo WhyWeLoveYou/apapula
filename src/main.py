@@ -69,6 +69,7 @@ def send_telegram_message(message, chat_id, link, date):
     if response.status_code == 200:
         logging.info("Pesan berhasil dikirim.")
         sended.save_sended(link, date)
+        SENDED = [data["link"] for data in sended.get_data()]
     else:
         logging.error(f"Kesalahan saat mengirim pesan: {response.text}")
 
